@@ -58,15 +58,18 @@
         <h1>Diagrama de Pareto!</h1>
         <p>Interfaz para cargar un documento formato excel para generar los porcentajes, frecuencia y diagrama de Pareto</p>
         <!--<p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>-->
-      </div>
-    </div>
-
-    <div class="container">
         <div class="row">
             <form action="">
                 <input type="file" name="input_xls" id="input_xls">
                 <button type="submit" id="btn_cargar" class="btn btn-success">Cargar Archivo</button>
             </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+        <div id="my_file_output">
+            
         </div>
       <!-- Example row of columns -->
 <!--      <div class="row">
@@ -98,6 +101,8 @@
         <script src="js/vendor/bootstrap.min.js"></script>
 
         <script src="js/main.js"></script>
+        <script src="js/pareto.js"></script>
+        <script src="js/xls.js"></script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
