@@ -17,7 +17,7 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
-        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="../css/bootstrap.min.css">
         <style>
             body {
                 padding-top: 50px;
@@ -27,7 +27,6 @@ and open the template in the editor.
         <link rel="stylesheet" href="css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="css/main.css">
 
-        <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
     </head>
     <body>
         <!--[if lt IE 8]>
@@ -42,7 +41,7 @@ and open the template in the editor.
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Inteligencia Artificial</a>
+                    <a class="navbar-brand" href="../index.php">Inteligencia Artificial</a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <form class="navbar-form navbar-right" role="form">
@@ -61,15 +60,10 @@ and open the template in the editor.
         <!-- Main jumbotron for a primary marketing message or call to action -->
         <div class="jumbotron">
             <div class="container">
-                <h1>Diagrama de Pareto!</h1>
-                <p>Interfaz para cargar un documento formato excel para generar los porcentajes, frecuencia y diagrama de Pareto</p>
-                <!--<p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>-->
-                <div class="row">
-                    <form action="pareto.php/getData" method="post" id="formuploadajax" enctype="multipart/form-data">
-                        <input type="file" name="excel" id="excel">
-                        <button type="submit" id="btn_cargar" class="btn btn-success">Cargar Archivo</button>
-                    </form>
-                </div>
+                <h2>Resultados</h2>
+                <?php
+                    echo $table;
+                ?>
             </div>
         </div>
 
@@ -85,11 +79,6 @@ and open the template in the editor.
         </div> <!-- /container -->        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.js"><\/script>')</script>
 
-        <script src="js/vendor/bootstrap.min.js"></script>
-
-        <script src="js/main.js"></script>
-        <script src="js/pareto.js"></script>
-        <script src="js/xls.js"></script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
