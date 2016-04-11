@@ -62,13 +62,14 @@ and open the template in the editor.
             <div class="container">
                 <h2>Resultados</h2>
                 <?php
-                    echo $table;
+                echo $table;
                 ?>
             </div>
         </div>
 
         <div class="container">
             <div id="my_file_output">
+                <canvas id="c" width="500" height="500"></canvas>
 
             </div>
             <hr>
@@ -78,6 +79,7 @@ and open the template in the editor.
             </footer>
         </div> <!-- /container -->        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.js"><\/script>')</script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
 
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
@@ -96,6 +98,53 @@ and open the template in the editor.
             }(window, document, 'script', 'ga'));
             ga('create', 'UA-XXXXX-X', 'auto');
             ga('send', 'pageview');
+        </script>
+        <script>
+            var ctx = document.getElementById("c").getContext("2d");
+            var arrayLabels = <?php echo json_encode($arrayEtiquetas) ?>;
+            var arrayFrecuencia = <?php echo json_encode($arrayFrecuencia) ?>;
+            var arrayPorcentaje = <?php echo json_encode($arrayPorcentaje) ?>;
+            var array80 = <?php echo json_encode($array80) ?>;
+            var data = {
+                labels: arrayLabels,
+//                labels: ["Frecuencia", "Porcentaje", "80 / 20", 'Hola q ace'],
+                datasets: [{
+                        label: "Frecuencia",
+                        fillColor: "rgba(220,220,220,0.2)",
+                        strokeColor: "rgba(220,220,220,1)",
+                        pointColor: "rgba(220,220,220,1)",
+                        pointStrokeColor: "#fff",
+                        pointHighlightFill: "#fff",
+                        pointHighlightStroke: "rgba(220,220,220,1)",
+                        data: arrayFrecuencia
+//                        data: [65, 59, 80, 81, 56, 55, 40]
+                    }, {
+                        label: "Porcentaje",
+                        fillColor: "rgba(151,187,205,0.2)",
+                        strokeColor: "rgba(151,187,205,1)",
+                        pointColor: "rgba(151,187,205,1)",
+                        pointStrokeColor: "#fff",
+                        pointHighlightFill: "#fff",
+                        pointHighlightStroke: "rgba(151,187,205,1)",
+                        data: arrayPorcentaje
+//                        data: [40, 50, 60, 70, 80, 90, 90]
+                    }, {
+                        label: "80 / 20",
+                        fillColor: "rgba(151,187,205,0.2)",
+                        strokeColor: "rgba(151,187,205,1)",
+                        pointColor: "rgba(151,187,205,1)",
+                        pointStrokeColor: "#fff",
+                        pointHighlightFill: "#fff",
+                        pointHighlightStroke: "rgba(151,187,205,1)",
+                        data: array80
+//                        data: [80, 80, 80, 80, 80, 80, 80]
+                    }]
+            };
+//            console.table(data);
+//            console.log(arrayFrecuencia);
+//            console.log(arrayPorcentaje);
+//            console.log(array80);
+            var MyNewChart = new Chart(ctx).Line(data);
         </script>
     </body>
 </html>

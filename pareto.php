@@ -20,19 +20,18 @@ function uploadExcel() {
 ////////////////////////////////////////////////////////
 
     if (file_exists($destino)) {
-
         /** Clases necesarias */
         require_once('Classes/PHPExcel.php');
-
         require_once('Classes/PHPExcel/Reader/Excel2007.php');
 
 // Cargando la hoja de cálculo
-
         $objReader = new PHPExcel_Reader_Excel2007();
-
         $objPHPExcel = $objReader->load($destino);
-
         $objFecha = new PHPExcel_Shared_Date();
+        $arrayEtiquetas = array();
+        $arrayFrecuencia = array();
+        $arrayPorcentaje = array();
+        $array80 = array();
 
 // Asignar hoja de excel activa
         $objPHPExcel->setActiveSheetIndex(0);
@@ -72,18 +71,27 @@ function uploadExcel() {
             $frecuencia += $valor;
             $table .= '<td>' . $variable . '</td>';
             $table .= '<td>' . $valor . '</td>';
-            $table .= '<td>' . $frecuencia . '</td>';
-            $table .= '<td>' . ($frecuencia / $ultimaFrecuencia) * 100 . '</td>';
+            $table .= '<td>' . $frecuencia . '</td>';//Frecuencia
+            $porcentaje = ($frecuencia / $ultimaFrecuencia) * 100;
+            $table .= '<td>' . $porcentaje . '</td>';//Porcentaje
             $table .= '<td>' . '80' . '</td>';
             $table .= '</tr>';
+            //Armamos el array labels
+            $arrayEtiquetas[] = $variable;
+            //Armamos el array frecuencia
+            $arrayFrecuencia[] = $frecuencia;
+            //Armamos el array porcentaje
+            $arrayPorcentaje[] = $porcentaje;
+            //Armamos el array 80/20
+            $array80[] = 80;
         }
         $table .= '</tbody>';
         $table .= '</table>';
-        viewResults($table);
+        viewResults($table, $arrayEtiquetas, $arrayFrecuencia, $arrayPorcentaje, $array80);
 //        echo $table;
     }
 }
 
-function viewResults($table) {
+function viewResults($table, $arrayEtiquetas, $arrayFrecuencia, $arrayPorcentaje, $array80) {
     include ('resultsView.php');
 }
