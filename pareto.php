@@ -29,6 +29,7 @@ function uploadExcel() {
         $objPHPExcel = $objReader->load($destino);
         $objFecha = new PHPExcel_Shared_Date();
         $arrayEtiquetas = array();
+        $arrayValor = array();
         $arrayFrecuencia = array();
         $arrayPorcentaje = array();
         $array80 = array();
@@ -41,8 +42,8 @@ function uploadExcel() {
         $table .= '<tr>';
         $table .= '<th>Variable</th>';
         $table .= '<th>Valor</th>';
-        $table .= '<th>Frecuencia</th>';
-        $table .= '<th>Porcentaje</th>';
+        $table .= '<th>Acumulate</th>';
+        $table .= '<th>Frecuency Acumulate</th>';
         $table .= '<th>80/20</th>';
         $table .= '</tr>';
         $table .= '</thead>';
@@ -71,13 +72,15 @@ function uploadExcel() {
             $frecuencia += $valor;
             $table .= '<td>' . $variable . '</td>';
             $table .= '<td>' . $valor . '</td>';
-            $table .= '<td>' . $frecuencia . '</td>';//Frecuencia
             $porcentaje = ($frecuencia / $ultimaFrecuencia) * 100;
+            $table .= '<td>' . $frecuencia . '</td>';//Frecuencia
             $table .= '<td>' . $porcentaje . '</td>';//Porcentaje
             $table .= '<td>' . '80' . '</td>';
             $table .= '</tr>';
             //Armamos el array labels
             $arrayEtiquetas[] = $variable;
+            //Armamos el array valor
+            $arrayValor[] = $valor;
             //Armamos el array frecuencia
             $arrayFrecuencia[] = $frecuencia;
             //Armamos el array porcentaje
@@ -87,11 +90,11 @@ function uploadExcel() {
         }
         $table .= '</tbody>';
         $table .= '</table>';
-        viewResults($table, $arrayEtiquetas, $arrayFrecuencia, $arrayPorcentaje, $array80);
+        viewResults($table, $arrayEtiquetas, $arrayValor, $arrayFrecuencia, $arrayPorcentaje, $array80);
 //        echo $table;
     }
 }
 
-function viewResults($table, $arrayEtiquetas, $arrayFrecuencia, $arrayPorcentaje, $array80) {
+function viewResults($table, $arrayEtiquetas, $arrayValor, $arrayFrecuencia, $arrayPorcentaje, $array80) {
     include ('resultsView.php');
 }

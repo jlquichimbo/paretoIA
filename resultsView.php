@@ -102,7 +102,8 @@ and open the template in the editor.
         <script>
             var ctx = document.getElementById("c").getContext("2d");
             var arrayLabels = <?php echo json_encode($arrayEtiquetas) ?>;
-            var arrayFrecuencia = <?php echo json_encode($arrayFrecuencia) ?>;
+            var arrayValor = <?php echo json_encode($arrayValor) ?>;
+//            var arrayFrecuencyAcumulate = <?php echo json_encode($arrayFrecuencia) ?>;
             var arrayPorcentaje = <?php echo json_encode($arrayPorcentaje) ?>;
             var array80 = <?php echo json_encode($array80) ?>;
             var data = {
@@ -116,7 +117,7 @@ and open the template in the editor.
                         pointStrokeColor: "#fff",
                         pointHighlightFill: "#fff",
                         pointHighlightStroke: "rgba(220,220,220,1)",
-                        data: arrayFrecuencia
+                        data:  arrayValor
 //                        data: [65, 59, 80, 81, 56, 55, 40]
                     }, {
                         label: "Porcentaje",
