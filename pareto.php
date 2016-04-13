@@ -72,9 +72,9 @@ function uploadExcel() {
             $frecuencia += $valor;
             $table .= '<td>' . $variable . '</td>';
             $table .= '<td>' . $valor . '</td>';
-            $porcentaje = ($frecuencia / $ultimaFrecuencia) * 100;
-            $table .= '<td>' . $frecuencia . '</td>';//Frecuencia
-            $table .= '<td>' . $porcentaje . '</td>';//Porcentaje
+            $table .= '<td>' .  $frecuencia . '</td>';//Frecuencia
+            $porcentaje = round(($frecuencia / $ultimaFrecuencia) * 100);
+            $table .= '<td>' . $porcentaje . '%</td>';//Porcentaje
             $table .= '<td>' . '80' . '</td>';
             $table .= '</tr>';
             //Armamos el array labels
